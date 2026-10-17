@@ -90,7 +90,7 @@ A trigger case fails -> fix the description, not the body. A behaviour case fail
 - Forward slashes in every path. Script paths as `<skill-dir>/...`, so they work wherever the skill is installed.
 - MCP tools fully qualified: `server:tool`.
 - No dates that go stale (`before October 2026 use ...`). Old ways go into a collapsed `Old patterns` section.
-- Examples, eval prompts and test fixtures use invented names (`Acme`), never real people, customers or companies. Real names only where the skill needs them to work.
+- Generic by default. If the skill can work for anyone, write it for anyone: no personal paths, no user, people, repo or company names, no customer data, no names of other skills, no personal tools, agents or config. Examples, eval prompts and test fixtures use invented names (`Acme`). A skill that only makes sense in one environment keeps only the specifics it needs to work.
 - Stands alone: no wikilinks, no notes-vault paths, no "see the note on X". Inline the fact.
 - Opus: no `double-check your work`, `think step by step` or `only report high-severity` lines. It verifies by itself and follows limits literally.
 - Haiku: spell out each step and the expected output. It does not fill gaps.
