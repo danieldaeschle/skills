@@ -60,7 +60,7 @@ A trigger case fails -> fix the description, not the body. A behaviour case fail
 
 ## Existing skill or the whole library
 
-- Lint all: `node <skill-dir>/scripts/lint-skill.mjs --root <skills dir> --all`
+- Lint all: `node <skill-dir>/scripts/lint-skill.mjs --root <skills dir> --all`. Vendored skills: one name per line in `<skills dir>/.skill-lint-ignore`.
 - Skill does not trigger: add an obvious and a paraphrased case, run evals, then fix the description.
 - Fires on the wrong request: add a should-not-trigger case, then add a `Not for X - use Y` clause to both descriptions.
 - Rename: `git mv` the directory, set `name:`, then grep the old name across the skills root, `.gitattributes` and the agent config (instructions, agents, rules, hooks, settings). Check scripts too: import paths and hard-coded `<skills root>/<name>` paths. Run the renamed skill's tests.

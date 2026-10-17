@@ -14,7 +14,12 @@ const SKILLS_ROOT = resolve(
 );
 const argumentsList = rootFlagIndex === -1 ? rawArguments : rawArguments.filter((_, index) => index !== rootFlagIndex && index !== rootFlagIndex + 1);
 
-const SKIPPED_DIRS = new Set([".git"]);
+// Vendored skills keep their upstream shape, list them one per line in this file.
+const IGNORE_FILE = join(SKILLS_ROOT, ".skill-lint-ignore");
+const SKIPPED_DIRS = new Set([
+  ".git",
+  ...(existsSync(IGNORE_FILE) ? readFileSync(IGNORE_FILE, "utf8").split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith("#")) : []),
+]);
 const NAME_PATTERN = /^[a-z0-9-]{1,64}$/;
 // Hard upload limit on claude.ai; Claude Code truncates at 1536.
 const DESCRIPTION_MAX_CHARS = 1024;

@@ -81,4 +81,11 @@ evalArguments.push(...passthrough);
 
 console.log(`${caseCount} case(s), results in ${join(runDir, "results")}`);
 const result = spawnSync(claudeBinary, evalArguments, { stdio: "inherit" });
+// `claude plugin eval` exits 0 without running anything when the account lacks access.
+const outputDirIndex = passthrough.indexOf("--output-dir");
+const outputDir = outputDirIndex >= 0 ? passthrough[outputDirIndex + 1] : join(runDir, "results");
+if (result.status === 0 && !existsSync(outputDir)) {
+  console.error("No results written - `claude plugin eval` ran nothing. Check the account has plugin-eval access.");
+  process.exit(1);
+}
 process.exit(result.status ?? 1);
